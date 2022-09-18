@@ -456,6 +456,24 @@ def identity_changed():
         configure_https()
 
 
+@hooks.hook('identity-credentials-relation-joined')
+def identity_credentials_joined(rid=None):
+    if service_enabled('volume'):
+        settings = {'username': 'cinder', 'requested_roles': 'Admin'}
+        relation_set(relation_id=rid, **settings)
+
+
+@hooks.hook('identity-credentials-relation-changed')
+@restart_on_change(restart_map())
+def identity_credentials_changed():
+    if service_enabled('volume'):
+        if 'identity-credentials' not in CONFIGS.complete_contexts():
+            juju_log('identity-credentials relation incomplete. '
+                     'Peer not ready?')
+            return
+        CONFIGS.write(CINDER_CONF)
+
+
 @hooks.hook('ceph-relation-joined')
 def ceph_joined():
     if not os.path.isdir('/etc/ceph'):
@@ -573,6 +591,7 @@ def image_service_changed():
 
 @hooks.hook('amqp-relation-broken',
             'identity-service-relation-broken',
+            'identity-credentials-relation-broken',
             'image-service-relation-broken',
             'shared-db-relation-broken')
 @restart_on_change(restart_map(), stopstart=True)

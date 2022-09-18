@@ -31,6 +31,8 @@ requires:
     interface: rabbitmq
   identity-service:
     interface: keystone
+  identity-credentials:
+    interface: keystone-credentials
   ceph:
     interface: ceph-client
   image-service:

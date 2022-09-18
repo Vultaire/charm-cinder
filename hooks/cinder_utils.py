@@ -218,6 +218,9 @@ BASE_RESOURCE_MAP = OrderedDict([
                          config_file=CINDER_CONF),
                      cinder_contexts.StorageBackendContext(),
                      cinder_contexts.LoggingConfigContext(),
+                     context.IdentityCredentialsContext(
+                         service='cinder',
+                         service_user='cinder'),
                      context.IdentityServiceContext(
                          service='cinder',
                          service_user='cinder'),
