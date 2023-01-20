@@ -1,6 +1,7 @@
-name: cinder
-summary: OpenStack block storage service
-maintainer: OpenStack Charmers <openstack-charmers@lists.ubuntu.com>
+name: vultaire-cinder
+display-name: Cinder (a BootStack fork by vultaire)
+summary: OpenStack block storage service (a BootStack fork)
+maintainer: Paul Goins <paul.goins@canonical.com>
 description: |
   Cinder is the block storage service for the OpenStack.
 tags:

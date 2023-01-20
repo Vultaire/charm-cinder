@@ -1,3 +1,10 @@
+# This is a forked charm
+
+This is a fork of https://charmhub.io/cinder for providing pre-release and/or
+backported changes and bug fixes.  Unless you have been explicitly directed
+here, you probably should not use this charm; use the upstream version
+instead.
+
 # Overview
 
 The cinder charm deploys [Cinder][upstream-cinder], the Block Storage (volume)
